@@ -11,18 +11,19 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: globals.browser
     },
     plugins: {
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      'react-refresh': reactRefresh
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
-  },
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'no-unused-vars': 'error', // 禁止定义未使用的变量
+      'no-debugger': 'error', // 禁止使用debugger
+      'no-var': 'error', // 要求使用 let 或 const 而不是 var
+      'no-console': 'error' // 禁止使用console
+    }
+  }
 )
