@@ -1,15 +1,17 @@
 import { createHashRouter, Navigate } from 'react-router-dom'
 import Error404 from '@/views/404'
 import Error403 from '@/views/403'
+import Login from '@/views/login/Login'
+import Welcome from '@/views/welcome/Welcome'
 
 const routes = [
   {
     path: '/',
-    element: <div>Home</div>,
+    element: <Welcome />,
   },
   {
     path: '/login',
-    element: <div>Login</div>,
+    element: <Login />,
   },
   {
     path: '*',
