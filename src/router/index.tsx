@@ -4,6 +4,7 @@ import Error403 from '@/views/403'
 import Login from '@/views/login/Login'
 import Welcome from '@/views/welcome/Welcome'
 import Layout from '@/layout/Layout'
+import Dashboard from '@/views/dashboard'
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
       {
         path: '/welcome',
         element: <Welcome />,
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
       },
     ],
   },
