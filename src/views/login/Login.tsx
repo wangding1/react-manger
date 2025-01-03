@@ -5,21 +5,26 @@ import { Login } from '@/types/api'
 import { login } from '@/api/index'
 import storage from '@/utils/storage'
 import { message } from '@/utils/AntdGlobal'
+import useStore from '@/store/index'
 
 function LoginFc() {
+  const store = useStore()
   const [loading, setLoading] = useState(false)
   async function onFinish(values: Login.params) {
-    setLoading(true)
-    let res = await login(values)
-    setLoading(false)
-    storage.set('token', res)
-    const params = new URLSearchParams(location.search)
-    message.success('登录成功')
-    setTimeout(() => {
-      location.href = params.get('callback') || '/welcome'
-    }, 1000)
     try {
-    } catch (error) {}
+      setLoading(true)
+      let res = await login(values)
+      setLoading(false)
+      storage.set('token', res)
+      store.updateToken(res)
+      const params = new URLSearchParams(location.search)
+      message.success('登录成功')
+      setTimeout(() => {
+        location.href = params.get('callback') || '/welcome'
+      }, 1000)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   return (
