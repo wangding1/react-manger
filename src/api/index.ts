@@ -81,3 +81,16 @@ export function getRadarData(): Promise<Dashboard.RadarData> {
     })
   })
 }
+
+export function getReportData(): Promise<Dashboard.ReportData> {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        driverCount: 100,
+        totalMoney: 100000,
+        orderCount: 1000,
+        cityNum: 7,
+      })
+    }, 100)
+  })
+}

@@ -34,6 +34,12 @@ export namespace User {
 }
 
 export namespace Dashboard {
+  export interface ReportData {
+    driverCount: number
+    totalMoney: number
+    orderCount: number
+    cityNum: number
+  }
   export interface LineData {
     label: string[]
     order: number[]
