@@ -1,6 +1,6 @@
 import SearchForm from '@/components/SearchForm'
 import { Form, Button, Input, Select, Table, Space, Modal } from 'antd'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import CreateUser from './CreateUser'
 import { User } from '@/types/api'
 import type { TableProps } from 'antd'

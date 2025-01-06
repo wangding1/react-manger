@@ -5,7 +5,8 @@ import Login from '@/views/login/Login'
 import Welcome from '@/views/welcome/Welcome'
 import Layout from '@/layout/Layout'
 import Dashboard from '@/views/dashboard'
-import UserList from '../views/system/user'
+import UserList from '@/views/system/user'
+import DeptList from '@/views/system/dept'
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
       {
         path: '/userList',
         element: <UserList />,
+      },
+      {
+        path: '/deptList',
+        element: <DeptList />,
       },
     ],
   },

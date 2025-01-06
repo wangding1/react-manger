@@ -12,7 +12,7 @@ function CreateUser(props: IModalProp) {
   const [deptList, setDeptList] = useState<Dept.DeptItem[]>([])
 
   useEffect(() => {
-    getDeptList().then(res => {
+    getDeptList({}).then(res => {
       setDeptList(res)
     })
   }, [])
