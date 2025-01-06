@@ -2,7 +2,7 @@ import { Button, Form, Input, Table, Space, Modal } from 'antd'
 import { Dept } from '@/types/api'
 import type { TableProps } from 'antd'
 import { formatDate } from '@/utils/index'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getDeptList, deleteDept } from '@/api'
 import { message } from '@/utils/AntdGlobal'
 import { IAction } from '@/types/modal'
@@ -12,8 +12,14 @@ function DeptList() {
   const [form] = Form.useForm()
   const [data, setData] = useState<Dept.DeptItem[]>([])
   const deptRef = useRef<{
-    open: (type: IAction, data?: Dept.DeptItem | { parentId: string }) => void
+    open: (type: IAction, data?: Dept.EditParams | { parentId: string }) => void
   }>()
+  const handleSearch = useCallback(() => {
+    const values = form.getFieldsValue()
+    getDeptList(values).then(res => {
+      setData(res)
+    })
+  }, [])
   useEffect(() => {
     handleSearch()
   }, [])
@@ -68,13 +74,6 @@ function DeptList() {
       },
     },
   ]
-
-  function handleSearch() {
-    const values = form.getFieldsValue()
-    getDeptList(values).then(res => {
-      setData(res)
-    })
-  }
 
   function handleReset() {
     form.resetFields()

@@ -1,7 +1,7 @@
 import { IModalProp } from '@/types/modal'
 import { Dept, User } from '@/types/api'
 import { Modal, Form, Input, TreeSelect, Select } from 'antd'
-import { useEffect, useImperativeHandle, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useState } from 'react'
 import { getDeptList, getAllUserList, createDept, editDept } from '@/api'
 import { message } from '@/utils/AntdGlobal'
 
@@ -96,4 +96,4 @@ function CreateDept(props: IModalProp<Dept.EditParams>) {
   )
 }
 
-export default CreateDept
+export default React.memo(CreateDept)
