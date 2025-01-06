@@ -5,6 +5,7 @@ import Login from '@/views/login/Login'
 import Welcome from '@/views/welcome/Welcome'
 import Layout from '@/layout/Layout'
 import Dashboard from '@/views/dashboard'
+import UserList from '../views/system/user'
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
       {
         path: '/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/userList',
+        element: <UserList />,
       },
     ],
   },

@@ -7,7 +7,7 @@ import { useCharts } from '@/hook/useCharts'
 import { getLineData, getPieCityData, getPieAgeData, getRadarData, getReportData } from '@/api'
 import { Dashboard } from '@/types/api'
 
-function Dashboard() {
+function DashBoard() {
   const userInfo = useStore(state => state.userInfo)
   const [lineRef, lineChart] = useCharts()
   const [pieRef1, pieChart1] = useCharts()
@@ -223,4 +223,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default DashBoard
