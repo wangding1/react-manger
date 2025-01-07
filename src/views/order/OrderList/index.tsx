@@ -8,11 +8,11 @@ import { message } from '@/utils/AntdGlobal'
 import { useAntdTable } from 'ahooks'
 import { formatMoney } from '@/utils'
 import { useRef } from 'react'
-import { IAction } from '@/types/modal'
+import CreateOrder from './conponents/CreateOrder'
 function OrderList() {
   const [form] = Form.useForm()
-  const userRef = useRef<{
-    open: (type: IAction, data?: Order.OrderItem) => void
+  const orderRef = useRef<{
+    open: () => void
   }>()
   const columns: TableProps<Order.OrderItem>['columns'] = [
     {
@@ -119,8 +119,11 @@ function OrderList() {
     defaultPageSize: 10,
   })
 
+  function handleDetail(orderId: string) {
+    orderRef.current?.open('edit', { orderId })
+  }
   function handleCreate() {
-    userRef.current?.open('create')
+    orderRef.current?.open('create')
   }
   function handleDel(orderId: string) {
     Modal.confirm({
@@ -171,8 +174,9 @@ function OrderList() {
             </Button>
           </div>
         </div>
-        <Table bordered rowKey='userId' columns={columns} {...tableProps} />
+        <Table bordered rowKey='_id' columns={columns} {...tableProps} />
       </div>
+      <CreateOrder mRef={orderRef} update={search.reset} />
     </div>
   )
 }

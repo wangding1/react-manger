@@ -626,3 +626,34 @@ export function delOrder(orderId: string) {
     resolve(1)
   })
 }
+
+export function getCityList(): Promise<Order.DictItem[]> {
+  return new Promise(resolve => {
+    resolve([
+      { id: '1', name: 'City 1' },
+      { id: '2', name: 'City 2' },
+      { id: '3', name: 'City 3' },
+      { id: '4', name: 'City 4' },
+      { id: '5', name: 'City 5' },
+      { id: '6', name: 'City 6' },
+    ])
+  })
+}
+
+export function getVehicleList(): Promise<Order.DictItem[]> {
+  return new Promise(resolve => {
+    resolve([
+      { id: '1', name: 'Driver 1' },
+      { id: '2', name: 'Driver 2' },
+      { id: '3', name: 'Driver 3' },
+      { id: '4', name: 'Driver 4' },
+      { id: '5', name: 'Driver 5' },
+      { id: '6', name: 'Driver 6' },
+    ])
+  })
+}
+export function createOrder(params: Order.CreateParams) {
+  return new Promise(resolve => {
+    resolve(1)
+  })
+}

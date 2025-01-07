@@ -6,7 +6,7 @@ export type IAction = 'create' | 'edit' | 'delete'
 export interface IModalProp<T = User.UserItem> {
   mRef: MutableRefObject<
     | {
-        open: (type: IAction, data?: T) => void
+        open: (type?: IAction, data?: T) => void
       }
     | undefined
   >
