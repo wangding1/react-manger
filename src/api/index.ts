@@ -1,5 +1,5 @@
 // import { request } from '@/utils/request'
-import { User, Dashboard, ResultData, Login, Dept } from '@/types/api'
+import { User, Dashboard, ResultData, Login, Dept, Order } from '@/types/api'
 
 export function login(params: Login.params) {
   return Promise.resolve('login success')
@@ -582,6 +582,46 @@ export function createDept(params: Dept.CreateParams) {
   })
 }
 export function editDept(params: Dept.EditParams) {
+  return new Promise(resolve => {
+    resolve(1)
+  })
+}
+
+export function getOrderList(params: Order.Params): Promise<ResultData<Order.OrderItem>> {
+  return new Promise(resolve => {
+    const fakeData: Order.OrderItem[] = Array.from({ length: 10 }, (_, index) => ({
+      _id: `order_${index + 1}`,
+      orderId: `ORD${index + 1}`,
+      cityName: 'City',
+      userName: `User${index + 1}`,
+      mobile: `1380013800${index + 1}`,
+      startAddress: 'Start Address',
+      endAddress: 'End Address',
+      orderAmount: 100 * (index + 1),
+      userPayAmount: 90 * (index + 1),
+      driverAmount: 80 * (index + 1),
+      payType: 1,
+      driverName: `Driver${index + 1}`,
+      vehicleName: 'Vehicle',
+      state: Order.IState.doing,
+      useTime: '2023-10-01T12:00:00Z',
+      endTime: '2023-10-01T13:00:00Z',
+      route: [{ lng: '123.456', lat: '34.567' }],
+      createTime: '2023-10-01T12:00:00Z',
+      remark: 'Remark',
+    }))
+
+    resolve({
+      list: fakeData,
+      page: {
+        pageNum: 1,
+        pageSize: 10,
+        total: 10,
+      },
+    })
+  })
+}
+export function delOrder(orderId: string) {
   return new Promise(resolve => {
     resolve(1)
   })

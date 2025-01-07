@@ -13,6 +13,7 @@ const items = [
     children: [
       { key: '/userList', label: '用户管理' },
       { key: '/deptList', label: '部门管理' },
+      { key: '/orderList', label: '订单管理' },
     ],
   },
 ]

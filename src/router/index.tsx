@@ -7,6 +7,7 @@ import Layout from '@/layout/Layout'
 import Dashboard from '@/views/dashboard'
 import UserList from '@/views/system/user'
 import DeptList from '@/views/system/dept'
+import OrderList from '@/views/order/OrderList'
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
       {
         path: '/deptList',
         element: <DeptList />,
+      },
+      {
+        path: '/orderList',
+        element: <OrderList />,
       },
     ],
   },
