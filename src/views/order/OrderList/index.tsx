@@ -119,11 +119,9 @@ function OrderList() {
     defaultPageSize: 10,
   })
 
-  function handleDetail(orderId: string) {
-    orderRef.current?.open('edit', { orderId })
-  }
+  function handleDetail(orderId: string) {}
   function handleCreate() {
-    orderRef.current?.open('create')
+    orderRef.current?.open()
   }
   function handleDel(orderId: string) {
     Modal.confirm({
