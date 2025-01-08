@@ -1,20 +1,29 @@
 import { Breadcrumb, Switch, Dropdown } from 'antd'
 import { MenuUnfoldOutlined } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './NavHeader.module.less'
 import type { MenuProps } from 'antd'
 import useStore from '@/store/index'
 import storage from '@/utils/storage'
+import { useLocation } from 'react-router-dom'
+import { findTreeNode } from '@/utils'
 function NavHeader() {
+  const { pathname } = useLocation()
   const userInfo = useStore(store => store.userInfo)
-  const [items] = useState([
+  const [items, setItems] = useState<{ title: JSX.Element | string }[]>([
     {
-      title: '首页',
-    },
-    {
-      title: '工作台',
+      title: <a href='/welcome'>首页</a>,
     },
   ])
+  useEffect(() => {
+    const arr = findTreeNode(pathname)
+    setItems([
+      {
+        title: <a href='/welcome'>首页</a>,
+      },
+      ...arr,
+    ])
+  }, [pathname])
   const menu: MenuProps['items'] = [
     {
       key: 'email',

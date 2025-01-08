@@ -1,3 +1,5 @@
+import { items as routers } from '@/components/MyMenu/MyMenu'
+
 // 格式化金额
 export const formatMoney = (num?: number | string) => {
   if (!num) return '0.00'
@@ -56,4 +58,32 @@ export const formatState = (state: number) => {
 export function formateMobile(mobile?: string) {
   if (!mobile) return null
   return mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
+}
+
+export function findTreeNode(pathname: string) {
+  const arr: { title: JSX.Element | string }[] = []
+  getTree(routers, pathname, arr)
+  return arr
+}
+
+function getTree(data: any[], pathname: string, result: any[], before: any[] = []) {
+  data.forEach(item => {
+    if (item.key === pathname) {
+      let arr = [
+        ...before,
+        {
+          title: item.label,
+        },
+      ]
+      result.push(...arr)
+    }
+    if (item.children) {
+      getTree(item.children, pathname, result, [
+        ...before,
+        {
+          title: item.label,
+        },
+      ])
+    }
+  })
 }

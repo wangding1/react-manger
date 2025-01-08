@@ -4,7 +4,7 @@ import style from './MyMenu.module.less'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-const items = [
+export const items = [
   { key: '/dashboard', icon: <DesktopOutlined />, label: '工作台' },
   {
     key: 'sub1',
