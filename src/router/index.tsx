@@ -5,10 +5,13 @@ import Login from '@/views/login/Login'
 import Welcome from '@/views/welcome/Welcome'
 import Layout from '@/layout/Layout'
 import Dashboard from '@/views/dashboard'
-import UserList from '@/views/system/user'
-import DeptList from '@/views/system/dept'
-import OrderList from '@/views/order/OrderList'
-import OrderCluster from '@/views/order/OrderCluster'
+import React, { Suspense } from 'react'
+
+// 懒加载组件
+const UserList = React.lazy(() => import('@/views/system/user'))
+const DeptList = React.lazy(() => import('@/views/system/dept'))
+const OrderList = React.lazy(() => import('@/views/order/OrderList'))
+const OrderCluster = React.lazy(() => import('@/views/order/OrderCluster'))
 
 const routes = [
   {
@@ -32,19 +35,35 @@ const routes = [
       },
       {
         path: '/userList',
-        element: <UserList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <UserList />
+          </Suspense>
+        ),
       },
       {
         path: '/deptList',
-        element: <DeptList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <DeptList />
+          </Suspense>
+        ),
       },
       {
         path: '/orderList',
-        element: <OrderList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <OrderList />
+          </Suspense>
+        ),
       },
       {
         path: '/orderCluster',
-        element: <OrderCluster />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <OrderCluster />
+          </Suspense>
+        ),
       },
     ],
   },
