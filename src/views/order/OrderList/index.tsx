@@ -9,10 +9,22 @@ import { useAntdTable } from 'ahooks'
 import { formatMoney } from '@/utils'
 import { useRef } from 'react'
 import CreateOrder from './conponents/CreateOrder'
+import OrderDetail from './conponents/OrderDetail'
+import OrderMarker from './conponents/OrderMarker'
+import OrderRoute from './conponents/OrderRoute'
 function OrderList() {
   const [form] = Form.useForm()
   const orderRef = useRef<{
     open: () => void
+  }>()
+  const detailRef = useRef<{
+    open: (record: Order.OrderItem) => void
+  }>()
+  const markerRef = useRef<{
+    open: (record: Order.OrderItem) => void
+  }>()
+  const routeRef = useRef<{
+    open: (record: Order.OrderItem) => void
   }>()
   const columns: TableProps<Order.OrderItem>['columns'] = [
     {
@@ -84,13 +96,13 @@ function OrderList() {
       render(_, record) {
         return (
           <Space>
-            <Button type='text' onClick={() => handleDetail(record.orderId)}>
+            <Button type='text' onClick={() => handleDetail(record)}>
               详情
             </Button>
-            <Button type='text' onClick={() => handleMarker(record.orderId)}>
+            <Button type='text' onClick={() => handleMarker(record)}>
               打点
             </Button>
-            <Button type='text' onClick={() => handleRoute(record.orderId)}>
+            <Button type='text' onClick={() => handleRoute(record)}>
               轨迹
             </Button>
             <Button type='text' danger onClick={() => handleDel(record._id)}>
@@ -118,11 +130,19 @@ function OrderList() {
     form,
     defaultPageSize: 10,
   })
-
-  function handleDetail(orderId: string) {}
   function handleCreate() {
     orderRef.current?.open()
   }
+  function handleDetail(record: Order.OrderItem) {
+    detailRef.current?.open(record)
+  }
+  const handleMarker = (record: Order.OrderItem) => {
+    markerRef.current?.open(record)
+  }
+  const handleRoute = (record: Order.OrderItem) => {
+    routeRef.current?.open(record)
+  }
+
   function handleDel(orderId: string) {
     Modal.confirm({
       title: '确认删除',
@@ -175,6 +195,9 @@ function OrderList() {
         <Table bordered rowKey='_id' columns={columns} {...tableProps} />
       </div>
       <CreateOrder mRef={orderRef} update={search.reset} />
+      <OrderDetail mRef={detailRef} />
+      <OrderMarker mRef={markerRef} />
+      <OrderRoute mRef={routeRef} />
     </div>
   )
 }

@@ -12,3 +12,12 @@ export interface IModalProp<T = User.UserItem> {
   >
   update: () => void
 }
+
+export interface IModalDetailProp<T = User.UserItem> {
+  mRef: MutableRefObject<
+    | {
+        open: (data: T) => void
+      }
+    | undefined
+  >
+}
