@@ -62,6 +62,7 @@ function OrderMarker(props: IModalDetailProp<Order.OrderItem>) {
   }
   function handleCancel() {
     setVisible(false)
+    setMarkers([])
   }
   return (
     <Modal

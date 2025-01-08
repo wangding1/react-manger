@@ -8,6 +8,7 @@ import Dashboard from '@/views/dashboard'
 import UserList from '@/views/system/user'
 import DeptList from '@/views/system/dept'
 import OrderList from '@/views/order/OrderList'
+import OrderCluster from '@/views/order/OrderCluster'
 
 const routes = [
   {
@@ -40,6 +41,10 @@ const routes = [
       {
         path: '/orderList',
         element: <OrderList />,
+      },
+      {
+        path: '/orderCluster',
+        element: <OrderCluster />,
       },
     ],
   },
